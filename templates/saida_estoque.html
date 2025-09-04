@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Saída do Estoque</h2>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+    </div>
+</div>
+
+<hr>
+
+<div class="card">
+    <div class="card-body">
+        <div class="mb-4">
+            <h5>Produto: {{ produto.descricao }}</h5>
+            <p class="mb-1">Código: {{ produto.codigo }}</p>
+            <p class="mb-1">Categoria: {{ produto.categoria }}</p>
+            <p class="mb-1">Estoque atual: {{ produto.quantidade }}</p>
+            <p class="mb-0">Fornecedor: {{ produto.fornecedor }}</p>
+        </div>
+        
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="quantidade" class="form-label">Quantidade a Retirar</label>
+                        <input type="number" class="form-control" id="quantidade" name="quantidade" min="1" max="{{ produto.quantidade }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="observacao" class="form-label">Observação (opcional)</label>
+                        <input type="text" class="form-control" id="observacao" name="observacao" placeholder="Ex: Venda para cliente Y">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-end">
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-box-arrow-up"></i> Registrar Saída
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

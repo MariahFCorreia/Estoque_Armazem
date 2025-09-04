@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Adicionar Novo Produto</h2>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+    </div>
+</div>
+
+<hr>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="codigo" class="form-label">Código do Produto</label>
+                        <input type="number" class="form-control" id="codigo" name="codigo" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <input type="text" class="form-control" id="descricao" name="descricao" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <select class="form-select" id="categoria" name="categoria" required>
+                            <option value="">Selecione uma categoria</option>
+                            {% for categoria in categorias %}
+                            <option value="{{ categoria }}">{{ categoria }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="quantidade" class="form-label">Quantidade Inicial</label>
+                        <input type="number" class="form-control" id="quantidade" name="quantidade" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="preco_unitario" class="form-label">Preço Unitário (R$)</label>
+                        <input type="number" step="0.01" class="form-control" id="preco_unitario" name="preco_unitario" min="0" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="fornecedor" class="form-label">Fornecedor</label>
+                        <input type="text" class="form-control" id="fornecedor" name="fornecedor" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="estoque_minimo" class="form-label">Estoque Mínimo</label>
+                        <input type="number" class="form-control" id="estoque_minimo" name="estoque_minimo" min="0" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="data_validade" class="form-label">Data de Validade (opcional)</label>
+                        <input type="date" class="form-control" id="data_validade" name="data_validade">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="lote" class="form-label">Lote (opcional)</label>
+                        <input type="text" class="form-control" id="lote" name="lote">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-circle"></i> Salvar Produto
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
